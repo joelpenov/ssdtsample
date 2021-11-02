@@ -26,7 +26,13 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-    
+
+- task: DacPacReport@1
+  inputs:
+    dropName: 'Database'
+    dacpacName: 'SqlDevOps'
+    targetDacPacPath: '**\bin\$(BuildConfiguration)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
